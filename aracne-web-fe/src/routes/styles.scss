@@ -1,0 +1,11 @@
+a {
+  color: var(--text-base);
+  display: inline-block;
+  padding: 0;
+  text-decoration: none;
+  transition: color 200ms;
+
+  &:hover {
+    color: var(--text-subdued);
+  }
+}

@@ -1,0 +1,136 @@
+.audioController {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(23px);
+  -webkit-backdrop-filter: blur(23px);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+  height: 5.5rem;
+  padding: 0 2rem;
+
+
+  .info {
+    width: 30%;
+    display: flex;
+    gap: 1rem;
+
+    .songLogo {
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .liveLogo {
+      height: 1.5rem;
+      width: 3rem;
+      background: var(--essential-negative);
+      border-radius: 2rem;
+      display: flex;
+      place-content: center;
+      align-items: center;
+      animation: pulsate 2s linear infinite;
+    }
+
+    .playerInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      place-content: center;
+
+      .title {
+        color: var(--text-base);
+      }
+
+      .author {
+        color: var(--text-subdued);
+      }
+    }
+
+  }
+
+  .player {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+
+    .elapsed,
+    .duration {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      margin-block: 0;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      color: var(--text-subdued);
+      width: 3rem;
+    }
+
+    .elapsed {
+      text-align: end;
+    }
+
+    .duration {
+      text-align: start;
+    }
+
+    .playerProgress {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      width: 80%;
+
+      .playerProgressBarWrapper {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+
+        .playerProgressBar {
+          height: 4px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          border-radius: 1rem;
+
+          &:not(.live) {
+            background: var(--text-subdued);
+
+            .filler {
+              background: var(--decorative-base);
+              height: 100%;
+              width: 50%;
+            }
+          }
+
+          &.live {
+            background: var(--essential-negative);
+            animation: pulsate 2s linear infinite;
+          }
+        }
+      }
+    }
+
+  }
+
+  .playerController {
+    width: 30%;
+    display: flex;
+    place-content: end;
+  }
+
+}
+
+
+@-webkit-keyframes pulsate {
+  0% {
+    box-shadow: 0 0 0 var(--essential-negative);
+  }
+  50% {
+    box-shadow: 0 0 17px var(--essential-negative);
+  }
+  100% {
+    box-shadow: 0 0 0 var(--essential-negative);
+  }
+}
