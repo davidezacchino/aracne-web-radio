@@ -1,20 +1,41 @@
-.audioController {
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(23px);
-  -webkit-backdrop-filter: blur(23px);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 0 var(--red);
+  }
+  50% {
+    box-shadow: 0 0 17px var(--red);
+  }
+  100% {
+    box-shadow: 0 0 0 var(--red);
+  }
+}
 
+.audioController {
+  position: relative;
+  bottom: -105px;
+  transition: bottom ease-in 500ms;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 5.5rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  margin: 0.5rem;
+  overflow: hidden;
+  z-index: 1;
 
+  &.ready {
+    bottom: 0;
+  }
 
   .info {
-    width: 30%;
+    width: 100%;
     display: flex;
     gap: 1rem;
+    align-items: center;
 
     .songLogo {
       border-radius: 0.5rem;
@@ -24,7 +45,7 @@
     .liveLogo {
       height: 1.5rem;
       width: 3rem;
-      background: var(--essential-negative);
+      background: var(--red);
       border-radius: 2rem;
       display: flex;
       place-content: center;
@@ -39,48 +60,55 @@
       place-content: center;
 
       .title {
-        color: var(--text-base);
+        text-transform: capitalize;
+        color: var(--white);
       }
 
       .author {
-        color: var(--text-subdued);
+        color: var(--light-grey);
       }
     }
-
   }
 
   .player {
-    width: 40%;
+    width: fit-content;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    place-content: center;
     gap: 5px;
-    justify-content: space-between;
 
-    .elapsed,
-    .duration {
+    .elapsed {
+      display: none;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
       margin-block: 0;
       font-size: 0.6875rem;
       font-weight: 400;
-      color: var(--text-subdued);
+      color: var(--light-grey);
       width: 3rem;
-    }
-
-    .elapsed {
       text-align: end;
     }
 
     .duration {
+      display: none;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      margin-block: 0;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      color: var(--light-grey);
+      width: 3rem;
       text-align: start;
     }
 
     .playerProgress {
-      display: flex;
+      position: absolute;
+      bottom: 0;
+      left: 0;
       justify-content: space-between;
       gap: 8px;
-      width: 80%;
+      width: 100%;
 
       .playerProgressBarWrapper {
         flex: 1 1 auto;
@@ -88,6 +116,7 @@
         align-items: center;
 
         .playerProgressBar {
+          overflow: hidden;
           height: 4px;
           width: 100%;
           display: flex;
@@ -95,42 +124,70 @@
           border-radius: 1rem;
 
           &:not(.live) {
-            background: var(--text-subdued);
+            background: var(--light-grey);
 
             .filler {
-              background: var(--decorative-base);
+              background: var(--white);
               height: 100%;
-              width: 50%;
+              transition: width linear 1s;
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
             }
           }
 
           &.live {
-            background: var(--essential-negative);
+            background: var(--red);
             animation: pulsate 2s linear infinite;
           }
         }
+
       }
     }
-
   }
 
   .playerController {
+    display: none;
     width: 30%;
-    display: flex;
     place-content: end;
-  }
+    align-items: center;
+    gap: 5px;
 
+    .volumeIcon {
+      position: relative;
+      top: 3px;
+      cursor: pointer;
+    }
+
+  }
 }
 
+@media screen and (min-width: 768px) {
+  .audioController {
+    justify-content: unset;
 
-@-webkit-keyframes pulsate {
-  0% {
-    box-shadow: 0 0 0 var(--essential-negative);
-  }
-  50% {
-    box-shadow: 0 0 17px var(--essential-negative);
-  }
-  100% {
-    box-shadow: 0 0 0 var(--essential-negative);
+    .info {
+      width: 30%;
+    }
+
+    .player {
+      width: 40%;
+      align-items: center;
+      place-content: unset;
+
+      .elapsed,
+      .duration {
+        display: block;
+      }
+
+      .playerProgress {
+        display: flex;
+        position: unset;
+        width: 80%;
+      }
+    }
+
+    .playerController {
+      display: flex;
+    }
   }
 }

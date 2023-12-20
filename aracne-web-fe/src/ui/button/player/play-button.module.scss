@@ -1,0 +1,22 @@
+.playButton {
+  background-color: #fff;
+  border: none;
+  border-radius: 40px;
+  color: #000;
+  display: block;
+  height: 40px;
+  justify-content: center;
+  min-width: 40px;
+  position: relative;
+  -webkit-transition: none 33ms cubic-bezier(.3, 0, .7, 1), height linear 500ms, width linear 500ms;
+  transition: none 33ms cubic-bezier(.3, 0, .7, 1), height linear 500ms, width linear 500ms;
+  -webkit-transition-property: all;
+  transition-property: all;
+  width: 40px;
+  padding: 10px;
+
+
+  &:active {
+    transform: scale(.95);
+  }
+}

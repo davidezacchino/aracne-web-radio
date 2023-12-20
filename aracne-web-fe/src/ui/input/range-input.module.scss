@@ -1,0 +1,53 @@
+.rangeInput {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 12rem;
+
+  &:hover {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      transition: outline 150ms linear;
+      outline: 2px solid var(--white);
+      outline-offset: 0.125rem;
+    }
+
+    &::-moz-range-thumb {
+      transition: outline 150ms linear;
+      outline: 2px solid var(--white);
+      outline-offset: 0.125rem;
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    background-color: var(--light-grey);
+    border-radius: 0.5rem;
+    height: 4px;
+  }
+
+  &::-moz-range-track {
+    background-color: var(--light-grey);
+    border-radius: 0.5rem;
+    height: 4px;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -5px;
+    background-color: var(--white);
+    border-radius: 0.5rem;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  &::-moz-range-thumb {
+    background-color: var(--white);
+    border: none;
+    border-radius: 0.5rem;
+    height: 1rem;
+    width: 1rem;
+  }
+}
