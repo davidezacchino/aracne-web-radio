@@ -27,6 +27,7 @@ $border-top-color_1: #000;
   animation: swing 2s infinite;
   transform-origin: top;
   transition: 1s ease-in-out;
+  z-index: -1;
   .spiderweb {
     width: 2px;
     height: 200px;

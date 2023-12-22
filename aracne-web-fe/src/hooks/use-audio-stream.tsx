@@ -8,7 +8,17 @@ export function useAudioStream(audioPlayerRef?: Signal<HTMLAudioElement | undefi
     const now = useSignal<Date>(new Date());
 
     const setMessage = $((message: MessageEvent) => {
-        audioStream.value = JSON.parse(message.data.toString() as unknown as string) as Radio;
+        const radioWs = JSON.parse(message.data.toString() as unknown as string) as Radio;
+        if (radioWs.now_playing.sh_id === audioStream.value?.now_playing.sh_id) return;
+        const playedAt = new Date(radioWs.now_playing.played_at * 1000);
+        let msToWaitBeforeSetNew = 0;
+        if (playedAt.getTime() > now.value.getTime()) {
+            msToWaitBeforeSetNew = playedAt.getTime() - now.value.getTime();
+        }
+
+        setTimeout(() => {
+            audioStream.value = radioWs;
+        }, msToWaitBeforeSetNew)
     });
 
     // eslint-disable-next-line qwik/no-use-visible-task

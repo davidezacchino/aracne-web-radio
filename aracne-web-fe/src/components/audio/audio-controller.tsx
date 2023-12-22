@@ -18,8 +18,6 @@ export default component$(() => {
         if (audioPlayerRef.value) {
             audioPlayerRef.value.oncanplay = () => {
                 canPlay.value = true;
-                console.log(canPlay.value)
-
             }
         }
     }, {strategy: 'document-ready'})
@@ -37,7 +35,7 @@ export default component$(() => {
 
             <audio id={'audio'} ref={audioPlayerRef} controls
                    src="https://radiowau-stream.andreacarriero.com/radio/8000/radio.mp3"
-                   volume={0.5} style={{display: 'none'}}>
+                   style={{display: 'none'}}>
             </audio>
         </>
     );

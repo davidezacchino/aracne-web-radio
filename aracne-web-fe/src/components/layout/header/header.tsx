@@ -6,9 +6,6 @@ import {Link, useLocation} from "@builder.io/qwik-city";
 export default component$(() => {
     const {url} = useLocation();
 
-
-    if(url.pathname === "/") return <></>;
-
     return (
         <header class={styles.header}>
             <div class={["container", styles.wrapper]}>

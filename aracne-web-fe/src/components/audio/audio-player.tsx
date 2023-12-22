@@ -21,7 +21,7 @@ export default component$(({audioStream, isPlaying, audioPlayerRef, elapsedTimeC
 
     const setVolume = $((_event: Event, element: HTMLInputElement) => {
         const sliderValue = Number(element.value);
-        oldVolume.value = sliderValue > 0 ? sliderValue : 50;
+        oldVolume.value = sliderValue > 0 ? sliderValue : 100;
         volume.value = sliderValue;
         audioPlayerRef.volume = sliderValue / 100;
     });
